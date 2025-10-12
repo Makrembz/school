@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 // test comment 1
 // test comment 2
 
+// test pull request
+
 @SpringBootApplication
 
 public class SchoolApplication {
