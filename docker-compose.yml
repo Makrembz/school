@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  mysqldb:
+    image: mysql:8
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db-school
+    ports:
+      - "3306:3306"
+
+  school-app:
+    image: makrembz/school:1.0
+    depends_on:
+      - mysqldb
+    restart: on-failure
+    ports:
+      - "8089:8089"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/db-school
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    stdin_open: true
+    tty: true
